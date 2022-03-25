@@ -81,8 +81,8 @@ function App() {
             pre.status === 2
               ? pre.status
               : total && total !== 0 && pre.value > total
-              ? 4
-              : 0,
+                ? 4
+                : 0,
         }));
         setItems(t);
       } else {
@@ -102,10 +102,10 @@ function App() {
             total - s.value < 0
               ? 4
               : pre.value === s.value
-              ? 0
-              : pre.status === 4
-              ? 0
-              : pre.status,
+                ? 0
+                : pre.status === 4
+                  ? 0
+                  : pre.status,
         }));
       } else if (s.status === 0) {
         const tmp = items.find((f) => f.status === 1);
@@ -117,8 +117,8 @@ function App() {
                 pre.value === tmp.value || pre.value === s.value
                   ? 2
                   : pre.status === 4
-                  ? 0
-                  : pre.status,
+                    ? 0
+                    : pre.status,
             }));
             setRun(0);
           }
@@ -133,10 +133,10 @@ function App() {
                 pre.value === s.value
                   ? 1
                   : k.value === pre.value
-                  ? 0
-                  : pre.status === 0
-                  ? 4
-                  : pre.status,
+                    ? 0
+                    : pre.status === 0
+                      ? 4
+                      : pre.status,
             }));
           } else {
             t = [...items];
@@ -205,20 +205,20 @@ function App() {
       <div className="container">
         <div className="inputForm">
           <div className="input">
-            <label htmlFor="name" className="font-effect-anaglyph">
+            <label htmlFor="name" className="">
               お名前
             </label>
             <input
               type="text"
               name="name"
               id="name"
-              className="font-effect-anaglyph"
+              className=""
               onChange={(e) => setState({ ...state, name: e.target.value })}
             />
           </div>
           <div className="action">
             <button
-              className="font-effect-fire-animation"
+              className=""
               disabled={!state.name}
               onClick={() => setState({ ...state, gameStatus: "start" })}
             >
@@ -234,10 +234,10 @@ function App() {
       <div className="container">
         {state.gameStatus === "lost" && (
           <div className="lost">
-            <h1 className="font-effect-fire-animation">YOU LOST!!</h1>
+            <h1 className="">YOU LOST!!</h1>
             <div>
               <button
-                className="font-effect-fire-animation"
+                className=""
                 onClick={() => restart()}
               >
                 re-start
@@ -247,10 +247,10 @@ function App() {
         )}
         {state.gameStatus === "win" && (
           <div className="win">
-            <h1 className="font-effect-fire-animation">YOU WIN!!</h1>
+            <h1 className="">YOU WIN!!</h1>
             <div>
               <button
-                className="font-effect-fire-animation"
+                className=""
                 onClick={() => restart()}
               >
                 re-start
@@ -271,11 +271,9 @@ function App() {
               return (
                 <div
                   key={v.value}
-                  className={`selectBar__card ${
-                    v.status === 2 ? "selected" : ""
-                  } ${v.status === 1 ? "last" : ""} ${
-                    v.status === 4 ? "over" : ""
-                  }`}
+                  className={`selectBar__card ${v.status === 2 ? "selected" : ""
+                    } ${v.status === 1 ? "last" : ""} ${v.status === 4 ? "over" : ""
+                    }`}
                   onClick={() => handleSelectCard(v.value)}
                 >
                   <span className="font-effect-3d">{v.value}</span>
@@ -286,18 +284,16 @@ function App() {
           <div className="random">
             <div className="random__box">
               <span
-                className={`font-effect-fire-animation ${
-                  run === 1 ? "round" : run === 2 ? "end" : ""
-                }`}
+                className={` ${run === 1 ? "round" : run === 2 ? "end" : ""
+                  }`}
               >
                 {state.num1}
               </span>
             </div>
             <div className="random__box">
               <span
-                className={`font-effect-fire-animation ${
-                  run === 1 ? "round" : run === 2 ? "end" : ""
-                }`}
+                className={` ${run === 1 ? "round" : run === 2 ? "end" : ""
+                  }`}
               >
                 {state.num2}
               </span>
@@ -305,7 +301,7 @@ function App() {
           </div>
           <button
             disabled={run !== 0}
-            className="roll font-effect-anaglyph"
+            className="roll"
             onClick={() => {
               setRun(1);
               setTimeout(() => {
