@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&effect=shadow-multiple|neon|anaglyph|fire-animation|3d");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  color: white;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0 2vw 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .main {
+  font-size: 60px;
+  font-weight: bold;
+  flex: 1;
+  filter: drop-shadow(0 0 20px #ffee0093);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1vw;
+}
+.container .main .selectBar {
+  display: flex;
+  gap: 1vw;
+  width: 100%;
+}
+.container .main .selectBar__card {
+  user-select: none;
+  flex: 1;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #83ffd4;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(24, 255, 174, 0.5), 0 0 20px rgba(24, 255, 174, 0.5), 0 0 50px rgba(214, 255, 241, 0.5);
+}
+.container .main .selectBar__card.selected {
+  background: #727272;
+  pointer-events: none;
+  position: relative;
+}
+.container .main .selectBar__card.selected span {
+  color: #313131;
+}
+.container .main .selectBar__card.selected span::after {
+  content: "Selected";
+  position: absolute;
+  font-size: 20px;
+  overflow: hidden;
+  bottom: -5px;
+  color: #0b4059;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.container .main .selectBar__card.last {
+  background: #ffe96c;
+}
+.container .main .selectBar__card.over {
+  background: #2c6b65;
+  pointer-events: none;
+}
+.container .main .random {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .main .random__box {
+  cursor: pointer;
+  width: 8vw;
+  height: 10vw;
+  min-width: 100px;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2vw;
+}
+.container .main .random__box span {
+  user-select: none;
+  font-size: 150px;
+  color: #eeeeee;
+}
+.container .main .roll {
+  font-size: 50px;
+  cursor: pointer;
+  flex-basis: 5vh;
+  padding: 0 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .lost,
+.container .win {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .lost h1,
+.container .win h1 {
+  font-size: 120px;
+}
+.container .lost button,
+.container .win button {
+  padding: 20px 50px;
+  font-size: 40px;
+  border: none;
+  outline: none;
+  background: #111;
+  border-radius: 20px;
+}
+.container .inputForm {
+  width: 100%;
+}
+.container .inputForm .input {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .inputForm .input label {
+  font-size: 30px;
+  margin-right: 10px;
+}
+.container .inputForm .input input {
+  padding: 10px;
+  max-width: 300px;
+  width: 100%;
+}
+.container .inputForm .action {
+  text-align: center;
+  margin-top: 20px;
+}
+.container .inputForm .action button {
+  padding: 10px 30px 5px;
+  font-size: 40px;
+  border-radius: 20px;
+  background: rgba(24, 255, 174, 0.3);
+}
+
+/*# sourceMappingURL=style.css.map */
