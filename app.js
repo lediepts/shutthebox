@@ -78,8 +78,11 @@ function App() {
   }, [run]);
   React.useEffect(() => {
     const l1 = items.filter((f) => f.status === 0);
+    const tt = l1.reduce((p, c) => {
+      return p + c.value;
+    }, 0);
     let isNext = !!l1.find((f) => f.value === total);
-    if (l1.find((f) => f.value <= total)) {
+    if (l1.find((f) => f.value <= total) && tt > total) {
       for (const item of l1) {
         if (isNext) break;
         const l2 = l1.filter((f) => f.value !== item.value);
@@ -93,7 +96,6 @@ function App() {
         }
       }
     }
-    console.log(isNext);
     if (isNext) {
       const t = items.map((pre) => ({
         value: pre.value,
