@@ -77,45 +77,47 @@ function App() {
     return state.num1 + state.num2;
   }, [run]);
   React.useEffect(() => {
-    const l1 = items.filter((f) => f.status === 0);
-    const tt = l1.reduce((p, c) => {
-      return p + c.value;
-    }, 0);
-    let isNext = !!l1.find((f) => f.value === total);
-    if (l1.find((f) => f.value <= total) && tt > total) {
-      for (const item of l1) {
-        if (isNext) break;
-        const l2 = l1.filter((f) => f.value !== item.value);
-        for (const l of l2) {
-          if (item.value + l.value === total) {
-            isNext = true;
-            break;
-          } else {
-            isNext = false;
+    if (run === 2) {
+      const l1 = items.filter((f) => f.status === 0);
+      const tt = l1.reduce((p, c) => {
+        return p + c.value;
+      }, 0);
+      let isNext = !!l1.find((f) => f.value === total);
+      if (l1.find((f) => f.value <= total) && tt > total) {
+        for (const item of l1) {
+          if (isNext) break;
+          const l2 = l1.filter((f) => f.value !== item.value);
+          for (const l of l2) {
+            if (item.value + l.value === total) {
+              isNext = true;
+              break;
+            } else {
+              isNext = false;
+            }
           }
         }
       }
+      if (isNext) {
+        const t = items.map((pre) => ({
+          value: pre.value,
+          status:
+            pre.status === 2
+              ? pre.status
+              : total && total !== 0 && pre.value > total
+              ? 4
+              : 0,
+        }));
+        setItems(t);
+      } else {
+        setState({ ...state, gameStatus: "lost" });
+      }
     }
-    if (isNext) {
-      const t = items.map((pre) => ({
-        value: pre.value,
-        status:
-          pre.status === 2
-            ? pre.status
-            : total && total !== 0 && pre.value > total
-            ? 4
-            : 0,
-      }));
-      setItems(t);
-    } else {
-      setState({ ...state, gameStatus: "lost" });
-    }
-  }, [total]);
+  }, [total, run]);
 
   const handleSelectCard = (i) => {
     if (i < total) {
       const s = items.find((f) => f.value === i);
-      let t;
+      let t = null;
       if (s && s.status === 1) {
         t = items.map((pre) => ({
           value: pre.value,
@@ -164,7 +166,7 @@ function App() {
           }
         }
       }
-      setItems(t);
+      t && setItems(t);
     } else if (i === total) {
       const t = items.map((pre) => ({
         value: pre.value,
