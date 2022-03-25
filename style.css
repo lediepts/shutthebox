@@ -7,6 +7,7 @@
 body {
   background: #111;
   color: white;
+  min-height: 100vh;
 }
 
 .container {
@@ -135,7 +136,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 1;
-  background: rgba(157, 157, 157, 0.5);
+  background: rgba(191, 191, 191, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,16 +144,25 @@ body {
 }
 .container .lost h1,
 .container .win h1 {
+  color: #fff018;
   font-size: 120px;
+}
+@media (max-width: 768px) {
+  .container .lost h1,
+.container .win h1 {
+    font-size: 60px;
+  }
 }
 .container .lost button,
 .container .win button {
-  padding: 20px 50px;
+  padding: 10px 50px;
   font-size: 40px;
   border: none;
   outline: none;
   background: #111;
   border-radius: 20px;
+  color: #0059dd;
+  cursor: pointer;
 }
 .container .inputForm {
   width: 100%;
@@ -170,7 +180,7 @@ body {
 .container .inputForm .input input {
   padding: 10px;
   max-width: 300px;
-  width: 80%;
+  width: 60%;
 }
 .container .inputForm .action {
   text-align: center;
