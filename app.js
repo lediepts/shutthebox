@@ -6,7 +6,6 @@ function App() {
     num1: 6,
     num2: 6,
   });
-  const [time, setTime] = React.useState(0);
   const [run, setRun] = React.useState(0);
   const [items, setItems] = React.useState([
     {
@@ -46,28 +45,6 @@ function App() {
       status: 0,
     },
   ]);
-  React.useEffect(() => {
-    let timer = null;
-    let t = null;
-    if (time > 0) {
-      setRun(1);
-      timer = setInterval(() => {
-        setState({
-          ...state,
-          num1: Math.ceil(Math.random() * 6),
-          num2: Math.ceil(Math.random() * 6),
-        });
-      }, 200);
-      t = setTimeout(() => {
-        clearInterval(timer);
-        setRun(2);
-      }, time);
-    }
-    return () => {
-      timer && clearInterval(timer);
-      t && clearTimeout(t);
-    };
-  }, [time]);
   React.useEffect(() => {
     if (items.filter((f) => f.status === 2).length === 9) {
       setState({ ...state, gameStatus: "win" });
@@ -308,16 +285,38 @@ function App() {
           </div>
           <div className="random">
             <div className="random__box">
-              <span className="font-effect-fire-animation">{state.num1}</span>
+              <span
+                className={`font-effect-fire-animation ${
+                  run === 1 ? "round" : run === 2 ? "end" : ""
+                }`}
+              >
+                {state.num1}
+              </span>
             </div>
             <div className="random__box">
-              <span className="font-effect-fire-animation">{state.num2}</span>
+              <span
+                className={`font-effect-fire-animation ${
+                  run === 1 ? "round" : run === 2 ? "end" : ""
+                }`}
+              >
+                {state.num2}
+              </span>
             </div>
           </div>
           <button
             disabled={run !== 0}
             className="roll font-effect-anaglyph"
-            onClick={() => setTime(Math.random() * 1000 + 1000)}
+            onClick={() => {
+              setRun(1);
+              setTimeout(() => {
+                setState({
+                  ...state,
+                  num1: Math.ceil(Math.random() * 6),
+                  num2: Math.ceil(Math.random() * 6),
+                });
+                setRun(2);
+              }, 200);
+            }}
           >
             ROLL
           </button>

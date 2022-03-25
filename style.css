@@ -19,6 +19,11 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media (max-width: 768px) {
+  .container {
+    min-height: 80vh;
+  }
+}
 .container .main {
   font-size: 60px;
   font-weight: bold;
@@ -33,12 +38,14 @@ body {
 }
 .container .main .selectBar {
   display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
   gap: 1vw;
   width: 100%;
 }
 .container .main .selectBar__card {
   user-select: none;
-  flex: 1;
   height: 100px;
   display: flex;
   align-items: center;
@@ -46,6 +53,12 @@ body {
   background: #83ffd4;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(24, 255, 174, 0.5), 0 0 20px rgba(24, 255, 174, 0.5), 0 0 50px rgba(214, 255, 241, 0.5);
+  width: 10%;
+}
+@media (max-width: 768px) {
+  .container .main .selectBar__card {
+    width: 18%;
+  }
 }
 .container .main .selectBar__card.selected {
   background: #727272;
@@ -66,6 +79,12 @@ body {
   right: 0;
   text-align: center;
 }
+@media (max-width: 768px) {
+  .container .main .selectBar__card.selected span::after {
+    bottom: 5px;
+    font-size: 15px;
+  }
+}
 .container .main .selectBar__card.last {
   background: #ffe96c;
 }
@@ -84,7 +103,7 @@ body {
   width: 8vw;
   height: 10vw;
   min-width: 100px;
-  min-height: 100px;
+  min-height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,8 +111,15 @@ body {
 }
 .container .main .random__box span {
   user-select: none;
-  font-size: 150px;
+  font-size: 100px;
   color: #eeeeee;
+  transition: all 200ms;
+}
+.container .main .random__box span.round {
+  opacity: 0;
+}
+.container .main .random__box span.end {
+  opacity: 1;
 }
 .container .main .roll {
   font-size: 50px;

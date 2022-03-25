@@ -4,6 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
 
 body {
   background: #111;
@@ -18,7 +23,8 @@ body {
   align-items: center;
   justify-content: center;
   // TODO: game init
-  h1 {
+  @include mobile() {
+    min-height: 80vh;
   }
   .main {
     font-size: 60px;
@@ -33,11 +39,13 @@ body {
     padding: 1vw;
     .selectBar {
       display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
       gap: 1vw;
       width: 100%;
       &__card {
         user-select: none;
-        flex: 1;
         height: 100px;
         display: flex;
         align-items: center;
@@ -47,6 +55,10 @@ body {
         box-shadow: 0 0 10px rgba($color: #18ffae, $alpha: 0.5),
           0 0 20px rgba($color: #18ffae, $alpha: 0.5),
           0 0 50px rgba($color: #d6fff1, $alpha: 0.5);
+        width: 10%;
+        @include mobile() {
+          width: 18%;
+        }
         &.selected {
           background: rgb(114, 114, 114);
           pointer-events: none;
@@ -63,6 +75,10 @@ body {
               left: 0;
               right: 0;
               text-align: center;
+              @include mobile() {
+                bottom: 5px;
+                font-size: 15px;
+              }
             }
           }
         }
@@ -85,7 +101,7 @@ body {
         width: 8vw;
         height: 10vw;
         min-width: 100px;
-        min-height: 100px;
+        min-height: 50px;
         // background: #0a060e;
         display: flex;
         justify-content: center;
@@ -93,8 +109,15 @@ body {
         margin: 0 2vw;
         span {
           user-select: none;
-          font-size: 150px;
+          font-size: 100px;
           color: #eeeeee;
+          transition: all 200ms;
+          &.round {
+            opacity: 0;
+          }
+          &.end {
+            opacity: 1;
+          }
         }
       }
     }
